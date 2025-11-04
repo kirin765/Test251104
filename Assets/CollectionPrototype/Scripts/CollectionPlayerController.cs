@@ -3,11 +3,11 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 #endif
 
-namespace CollectionGame
+namespace CollectionPrototype
 {
     [RequireComponent(typeof(Rigidbody2D))]
     [DisallowMultipleComponent]
-    public class PlayerController2D : MonoBehaviour
+    public class CollectionPlayerController : MonoBehaviour
     {
         [SerializeField]
         private float moveSpeed = 6f;

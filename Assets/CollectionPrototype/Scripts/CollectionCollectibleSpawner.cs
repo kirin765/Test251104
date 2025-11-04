@@ -1,13 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace CollectionGame
+namespace CollectionPrototype
 {
     [DisallowMultipleComponent]
-    public class CollectibleSpawner : MonoBehaviour
+    public class CollectionCollectibleSpawner : MonoBehaviour
     {
         [SerializeField]
-        private Collectible collectiblePrefab;
+        private CollectionCollectible collectiblePrefab;
 
         [SerializeField]
         private Vector2 areaSize = new Vector2(12f, 6f);
@@ -15,7 +15,7 @@ namespace CollectionGame
         [SerializeField, Min(1)]
         private int maxActiveCollectibles = 6;
 
-        private readonly List<Collectible> activeCollectibles = new List<Collectible>();
+        private readonly List<CollectionCollectible> activeCollectibles = new List<CollectionCollectible>();
         private bool allowSpawning;
 
         public Bounds SpawnBounds
@@ -45,7 +45,7 @@ namespace CollectionGame
             ClearCollectibles();
         }
 
-        public void HandleCollected(Collectible collectible)
+        public void HandleCollected(CollectionCollectible collectible)
         {
             if (collectible == null)
             {
@@ -73,7 +73,7 @@ namespace CollectionGame
             }
 
             Vector3 position = GetRandomPosition();
-            Collectible collectible = Instantiate(collectiblePrefab, position, Quaternion.identity, transform);
+            CollectionCollectible collectible = Instantiate(collectiblePrefab, position, Quaternion.identity, transform);
             collectible.Initialize(this);
             activeCollectibles.Add(collectible);
         }
@@ -91,7 +91,7 @@ namespace CollectionGame
         {
             for (int i = activeCollectibles.Count - 1; i >= 0; i--)
             {
-                Collectible collectible = activeCollectibles[i];
+                CollectionCollectible collectible = activeCollectibles[i];
                 if (collectible != null)
                 {
                     collectible.NotifyRemoved();

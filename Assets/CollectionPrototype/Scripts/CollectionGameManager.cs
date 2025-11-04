@@ -3,12 +3,12 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 #endif
 
-namespace CollectionGame
+namespace CollectionPrototype
 {
     [DisallowMultipleComponent]
-    public class GameManager : MonoBehaviour
+    public class CollectionGameManager : MonoBehaviour
     {
-        public static GameManager Instance { get; private set; }
+        public static CollectionGameManager Instance { get; private set; }
 
         [Header("Round Settings")]
         [SerializeField]
@@ -19,10 +19,10 @@ namespace CollectionGame
 
         [Header("Scene References")]
         [SerializeField]
-        private PlayerController2D player;
+        private CollectionPlayerController player;
 
         [SerializeField]
-        private CollectibleSpawner spawner;
+        private CollectionCollectibleSpawner spawner;
 
         private float timeRemaining;
         private int score;
@@ -67,7 +67,7 @@ namespace CollectionGame
             }
         }
 
-        public void RegisterCollectiblePickup(Collectible collectible)
+        public void RegisterCollectiblePickup(CollectionCollectible collectible)
         {
             if (!isRoundActive || collectible == null)
             {

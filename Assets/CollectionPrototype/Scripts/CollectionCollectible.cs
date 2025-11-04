@@ -1,9 +1,9 @@
 using UnityEngine;
 
-namespace CollectionGame
+namespace CollectionPrototype
 {
     [DisallowMultipleComponent]
-    public class Collectible : MonoBehaviour
+    public class CollectionCollectible : MonoBehaviour
     {
         [SerializeField]
         private int points = 1;
@@ -11,12 +11,12 @@ namespace CollectionGame
         [SerializeField]
         private float rotationSpeed = 90f;
 
-        private CollectibleSpawner spawner;
+        private CollectionCollectibleSpawner spawner;
         private bool isCollected;
 
         public int Points => Mathf.Max(1, points);
 
-        internal void Initialize(CollectibleSpawner owner)
+        internal void Initialize(CollectionCollectibleSpawner owner)
         {
             spawner = owner;
         }
@@ -40,9 +40,9 @@ namespace CollectionGame
 
             isCollected = true;
 
-            if (GameManager.Instance != null)
+            if (CollectionGameManager.Instance != null)
             {
-                GameManager.Instance.RegisterCollectiblePickup(this);
+                CollectionGameManager.Instance.RegisterCollectiblePickup(this);
             }
         }
 

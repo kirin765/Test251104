@@ -1,10 +1,10 @@
 using UnityEngine;
 
-namespace CollectionGame
+namespace CollectionPrototype
 {
-    [RequireComponent(typeof(PlayerController2D))]
+    [RequireComponent(typeof(CollectionPlayerController))]
     [DisallowMultipleComponent]
-    public class PlayerMovementAnimator : MonoBehaviour
+    public class CollectionPlayerMovementAnimator : MonoBehaviour
     {
         [SerializeField]
         private Transform spriteRoot;
@@ -24,7 +24,7 @@ namespace CollectionGame
         [SerializeField]
         private float returnSpeed = 8f;
 
-        private PlayerController2D controller;
+        private CollectionPlayerController controller;
         private Vector3 defaultLocalPosition;
         private Quaternion defaultLocalRotation;
         private float bobTimer;
@@ -37,7 +37,7 @@ namespace CollectionGame
 
         private void Awake()
         {
-            controller = GetComponent<PlayerController2D>();
+            controller = GetComponent<CollectionPlayerController>();
             EnsureSpriteBindings();
             if (spriteRoot == null)
             {
